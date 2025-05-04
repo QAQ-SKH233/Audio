@@ -134,7 +134,7 @@ void ProcessVoiceData(int slot, unsigned long id, std::string audioBuffer, std::
   if (audioPath.size() == 0)
   {
     auto timestamp = std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
-    std::string path = "/home/PugPrime/cs2server/game/csgo/addons/audio/temp/audio_" + timestamp + ".tmp";
+    std::string path = g_TempDir + "/audio_" + timestamp + ".tmp";
     std::ofstream outfile(path, std::ios::binary);
     if (!outfile)
     {
@@ -156,8 +156,6 @@ void ProcessVoiceData(int slot, unsigned long id, std::string audioBuffer, std::
   }
   else
   {
-    auto timestamp = std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
-    std::string path = "/home/PugPrime/cs2server/game/csgo/addons/audio/temp/audio_" + timestamp + ".tmp";
     try
     {
       buffer = ConvertAudioBufferToPCM(path, volumeLevel);

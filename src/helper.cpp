@@ -156,9 +156,11 @@ void ProcessVoiceData(int slot, unsigned long id, std::string audioBuffer, std::
   }
   else
   {
+    auto timestamp = std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
+    std::string path = "/home/PugPrime/cs2server/game/csgo/addons/audio/temp/audio_" + timestamp + ".tmp";
     try
     {
-      buffer = ConvertAudioBufferToPCM(audioPath, volumeLevel);
+      buffer = ConvertAudioBufferToPCM(path, volumeLevel);
     }
     catch (const std::exception &e)
     {
